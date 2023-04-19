@@ -1,0 +1,210 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="refresh" content="120" />
+    <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./js/googlechart.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/yatecstyle.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="/EMSscript/systemscript.js"></script>
+    <script type="text/javascript" src="/EMSscript/chart.js"></script>
+    <script type="text/javascript" src="/EMSscript/EMS_Command.js"></script>
+    <script type="text/javascript" src="/EMSscript/page7script.js"></script>
+    <script type="text/javascript" src="/EMSscript/getdata.js"></script>
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <link rel="shortcut icon" href="logo/TECO_icon.ico" />
+
+    <title>TECO雲端監管平台-佳龍4M</title>
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+            if (typeof (Storage) !== "undefined") {
+                console.log("aa");
+                // Select the value stored 
+                islogin = localStorage.islogin;
+                var page = location.pathname.toString();
+                switch (page) {
+                    case '/':
+                    case '/Homepage.aspx':
+                        //case '/Homepage_1.aspx':
+                        break;
+                    case '/page1.aspx':
+
+                        break;
+                    case '/page2.aspx':
+
+                        break;
+                    case '/page3.aspx':
+
+                        break;
+                    case '/page4.aspx':
+
+                        break;
+                    case '/page5.aspx':
+
+                        break;
+                    case '/page6.aspx':
+
+                        break;
+                    case '/page7.aspx':
+                        document.getElementById('controlmode').value = localStorage.Controlmode;
+                        break;
+                    case '/page8.aspx':
+
+                        break;
+                }
+
+            }
+            //loginstatus();
+            myTimer();
+            getESSdata();
+            pageselect();
+            //battsocchart(); 
+            getLineChartdata();
+            show_default_div();
+            show_default_table();
+            show_sys_single();
+            showdata('#select');
+            showdata('#rack_list');
+            var Timer = setInterval(function () {
+                myTimer();
+                getESSdata();
+                getLineChartdata();
+                show_default_div();
+                show_default_table();
+                show_sys_single();
+            }, 1000)
+
+        });
+    </script>
+    <style type="text/css">
+        div.scroll {
+            overflow: auto; /*設定卷軸 auto 是有超過我的高度的時候才會出現卷軸*/
+            display: block;
+        }
+
+        tbody.scroll {
+            overflow-y: auto; /*設定卷軸 auto 是有超過我的高度的時候才會出現卷軸*/
+            height: 500px; /*自己設定*/
+            display: block;
+        }
+
+        div {
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /*#B ul li {display:inline;}*/
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color: #F1F8FF;">
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    </button>
+                    <a class="navbar-brand" href="Homepage.aspx">
+                        <img src="/logo/TECO_logo.svg" width="150" height="40" alt='TECO' /></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-collapse-center row" id="bs-example-navbar-collapse-1">
+
+                    <p id="pagename" class=" navbar-center">雲端儲能管理系統</p>
+                    <p class="navbar-text navbar-right" style="font-weight: bold; font-size: 18px; color: black" id="demo"></p>
+                    <%--<button type = "button" class="btn btn-primary btn-lg navbar-btn navbar-right" data-toggle="modal" data-target="#myModal" style = "background-color: #004584; font-weight: bold" > 登入</button>--%>
+                    <p id="Username" class=" navbar-right"></p>
+                    <button class="btn btn-danger btn-lg navbar-btn navbar-right" style = "font-weight: bold" type="submit" value="SignOut" runat="server" id="cmdSignOut">登出</button>
+
+                </div>
+
+
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!----------------------------------------------------------------->
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" style="font-weight: bold">登入頁面</h4>
+                    </div>
+                    <form name="login_info" method="post" id="login_info">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="username">使用者名稱</label>
+                                <span id="user" class="error"></span>
+                                <input type="text" class="form-control" name="username"
+                                    id="username" placeholder="使用者名稱" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">密碼</label>
+                                <span id="psword" class="error"></span>
+                                <input type="password" class="form-control"
+                                    name="password"
+                                    id="password" placeholder="密碼" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="login()">登入</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2 col-md-1 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="fa1"><a href="page1.aspx">
+                            <img src="/svgicon/menu/system_icon.svg"><span id="page1" class="nav-text" style="font-weight: bold">系統單線圖</span></a></li>
+                        <li class="fa1"><a href="page2.aspx">
+                            <img src="/svgicon/menu/container_icon.svg"><span class="nav-text" style="font-weight: bold">盤體資訊</span></a></li>
+                        <li class="fa1"><a href="page3.aspx">
+                            <img src="/svgicon/menu/batt_icon.svg"><span class="nav-text" style="font-weight: bold">電池資訊</span></a></li>
+                        <li class="fa1"><a href="page4.aspx">
+                            <img src="/svgicon/menu/pcs_icon.svg"><span class="nav-text" style="font-weight: bold">PCS資訊</span></a></li>
+                        <li class="fa1"><a href="page5.aspx">
+                            <img src="/svgicon/menu/communication_icon.svg"><span class="nav-text" style="font-weight: bold">通訊狀態</span></a></li>
+                        <li class="fa1"><a href="page6.aspx">
+                            <img src="/svgicon/menu/alarm_icon.svg"><span class="nav-text" style="font-weight: bold">事件紀錄</span></a></li>
+                        <li class="fa1"><a href="page7.aspx">
+                            <img src="/svgicon/menu/control_icon.svg"><span class="nav-text" style="font-weight: bold">控制模式</span></a></li>
+                        <li class="fa1"><a href="page8.aspx">
+                            <img src="/svgicon/menu/chart_icon.svg"><span class="nav-text" style="font-weight: bold">歷史資料</span></a></li>
+                    </ul>
+
+                </div>
+                <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
+
+                    <div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
