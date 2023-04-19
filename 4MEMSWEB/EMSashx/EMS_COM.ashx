@@ -28,7 +28,47 @@ public class EMS_COM : IHttpHandler
         String SOC_L_limit = context.Request.Form["SOC_L_limit"];
         String P_ref = context.Request.Form["P_ref"];
         String stop = context.Request.Form["stop"];
-        if (select == "PCS_SET_ON")
+         if (select == "Set_MVCB_ON")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_MVCB_OFF")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_VCB1_ON")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_VCB1_OFF")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_VCB2_ON")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_VCB2_OFF")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_VCB3_ON")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "Set_VCB3_OFF")
+        {
+            TcpSendMessage(select, start);
+                context.Response.Write("成功");
+            return ;
+        }else if (select == "PCS_SET_ON")
         {
             TcpSendMessage(select, start);
                 context.Response.Write("成功");
@@ -122,7 +162,7 @@ public class EMS_COM : IHttpHandler
 
         try
         {
-            TcpClient TcpAc = new TcpClient("127.0.0.1", 22222);
+            TcpClient TcpAc = new TcpClient("192.168.205.1", 12345);
             NetworkStream ns = TcpAc.GetStream();
             StreamWriter sw = new StreamWriter(ns);
             sw.Write(string.Format("Web,{0},{1}", select, msg));

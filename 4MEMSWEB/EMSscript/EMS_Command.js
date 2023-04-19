@@ -527,29 +527,221 @@ function Set_P_ref() {
     }
 }
 
-
-function Set_MVCB_ON(){
+//----------page1_搭接或切離按鈕----------
+function Set_MVCB_ON() {
     var reply = confirm("確定要搭接MVCB?");
+    if (reply == true) {
+        console.log(reply)
+        //console.log("成功");
+        var start = '1';
+        var select = 'Set_MVCB_ON';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_MVCB_OFF() {
     var reply = confirm("確定要切離MVCB?");
+    if (reply == true) {
+        /*        console.log(reply)*/
+        /*        console.log("成功");*/
+        var start = '1';
+        var select = 'Set_MVCB_OFF';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_VCB1_ON() {
     var reply = confirm("確定要搭接VCB1?");
+    if (reply == true) {
+        /*        console.log(reply)*/
+        /*        console.log("成功");*/
+        var start = '1';
+        var select = 'Set_VCB1_ON';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_VCB1_OFF() {
     var reply = confirm("確定要切離VCB1?");
+    if (reply == true) {
+        /*        console.log(reply)*/
+        //console.log("成功");
+        var start = '1';
+        var select = 'Set_VCB1_OFF';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_VCB2_ON() {
     var reply = confirm("確定要搭接VCB2?");
+    if (reply == true) {
+        /*        console.log(reply)*/
+        //console.log("成功");
+        var start = '1';
+        var select = 'Set_VCB2_ON';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_VCB2_OFF() {
     var reply = confirm("確定要切離VCB2?");
+    if (reply == true) {
+        /*        console.log(reply)*/
+        //console.log("成功");
+        var start = '1';
+        var select = 'Set_VCB2_OFF';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_VCB3_ON() {
     var reply = confirm("確定要搭接VCB3?");
+    if (reply == true) {
+        /*        console.log(reply + "成功")*/
+        //console.log("成功");
+        var start = '1';
+        var select = 'Set_VCB3_ON';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 function Set_VCB3_OFF() {
     var reply = confirm("確定要切離VCB3?");
+    if (reply == true) {
+        /*        console.log(reply)*/
+        //console.log("成功");
+        var start = '1';
+        var select = 'Set_VCB3_OFF';
+        $.ajax(
+            {
+                url: '/EMSashx/EMS_COM.ashx',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                data: 'start=' + start + '&select=' + select,
+
+                success: function initialize(data) {
+
+                    //console.log("成功");
+                }
+            });
+        setTimeout(function () {
+            enablebtn("AFCTEST");
+        }, 200);
+    } else {
+        console.log(reply + "失敗")
+    }
 }
 
