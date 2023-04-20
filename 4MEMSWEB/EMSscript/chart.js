@@ -141,14 +141,8 @@ function sbspmchart() {
 
     var chart2 = null;
 
-    /*    data_num = (Control_Chartdatas.length / 2);*/
     for (var i in SBSPM_Chartdatas) {
-        /*        console.log(Control_Chartdatas[i].SBPSPM);*/ //資料%數
-        /*                console.log(2 % 4)*/
-        if (i % 4 == 0) {//利用%等於0來減少資料點，只需將對應id+1即可
-            dataTable.addRows([[(i / 2) + '', SBSPM_Chartdatas[i / 2].SBPSPM]]);//X軸id除2為時間3600秒,Y軸資料%
-        }
-
+        dataTable.addRows([[i + '', SBSPM_Chartdatas[i].SBPSPM]]);//X軸id除2為時間3600秒,Y軸資料%
     }
 
     options = {
@@ -210,9 +204,7 @@ function systemchart() {
     //}
 
     for (var j in System_Chartdatas) {
-        if (j % 4 == 0) {//利用%等於0來減少資料點，只需將對應id+1即可
-            dataTable.addRows([[(j / 2) + '', (System_Chartdatas[j / 2].P_ref) / 100, System_Chartdatas[j / 2].Base_Freq]]);//X軸id除2為時間3600秒,Y軸資料%
-        }
+        dataTable.addRows([[j + '', (System_Chartdatas[j].P_ref) / 100, System_Chartdatas[j].Base_Freq]]);//X軸id除2為時間3600秒,Y軸資料%
     }
 
     options = {
@@ -275,14 +267,9 @@ function PCSchart() {
     dataTable.addColumn('number', data1);
     dataTable.addColumn('number', data2);
     var chart1 = null;
-    //for (j = 0, jj = 500 - 1; j < 500, jj >= 0; j++ , jj--) {
-    //    dataTable.addRows([[j + '', getVRandom(18), getHzRandom(0.02)]]);
-    //}
-
     for (var j in Pcs_Chartdatas) {
-        if (j % 4 == 0) {//利用%等於0來減少資料點，只需將對應id+1即可
-            dataTable.addRows([[(j / 2) + '', (Pcs_Chartdatas[j / 2].P_ref) / 100, Pcs_Chartdatas[j / 2].Base_Freq]]);//X軸id除2為時間3600秒,Y軸資料%
-        }
+        dataTable.addRows([[j + '', (Pcs_Chartdatas[j].P_ref) / 100, Pcs_Chartdatas[j].Base_Freq]]);//X軸id除2為時間3600秒,Y軸資料%
+        
     }
 
     options = {

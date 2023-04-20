@@ -106,7 +106,7 @@ public class Method_4M
     #region getPcs_data
     public DataTable getPcs_data()
     {
-        SqlCommand cmd = new SqlCommand(@"SELECT TOP 7200 [datatime],[P_ref],[Base_Freq] FROM ( SELECT ROW_NUMBER() OVER (PARTITION BY [datatime] ORDER BY [datatime] DESC) AS ROWNUM,*FROM [2M_Web_Data].[dbo].[EMS]) AS TempM WHERE ROWNUM = 1 ORDER BY [datatime] DESC");
+        SqlCommand cmd = new SqlCommand(@"SELECT [datatime],[P_ref],[Base_Freq] FROM [2M_Web_Data].[dbo].[EMS] WHERE  datediff(s,convert(varchar(100),[datatime],111),convert(varchar(100),[datatime],120)) % 10 = '0'");
         DataTable dt = FourM_WEB.SqlHelper.cmdTable(cmd);
         return dt;
     }
@@ -122,10 +122,10 @@ public class Method_4M
     }
     #endregion
 
-    #region getPermission_data
+    #region getSBSPM_data
     public DataTable getSBSPM_data()
     {
-        SqlCommand cmd = new SqlCommand(@"SELECT TOP 7200 [datatime],[SBPSPM] FROM ( SELECT ROW_NUMBER() OVER (PARTITION BY [datatime] ORDER BY [datatime] DESC) AS ROWNUM,*FROM [2M_Web_Data].[dbo].[EMS]) AS TempM WHERE ROWNUM = 1 ORDER BY [datatime] DESC");
+        SqlCommand cmd = new SqlCommand(@"SELECT [datatime],[SBPSPM] FROM [2M_Web_Data].[dbo].[EMS] WHERE  datediff(s,convert(varchar(100),[datatime],111),convert(varchar(100),[datatime],120)) % 10 = '0'");
         DataTable dt = FourM_WEB.SqlHelper.cmdTable(cmd);
         return dt;
     }
@@ -134,7 +134,7 @@ public class Method_4M
     #region getSystem_data
     public DataTable getSystem_data()
     {
-        SqlCommand cmd = new SqlCommand(@"SELECT TOP 7200 [datatime],[P_ref],[Base_Freq] FROM ( SELECT ROW_NUMBER() OVER (PARTITION BY [datatime] ORDER BY [datatime] DESC) AS ROWNUM,*FROM [2M_Web_Data].[dbo].[EMS]) AS TempM WHERE ROWNUM = 1 ORDER BY [datatime] DESC");
+        SqlCommand cmd = new SqlCommand(@"SELECT [datatime],[P_ref],[Base_Freq] FROM [2M_Web_Data].[dbo].[EMS] WHERE  datediff(s,convert(varchar(100),[datatime],111),convert(varchar(100),[datatime],120)) % 10 = '0'SELECT TOP 7200 [datatime],[P_ref],[Base_Freq] FROM ( SELECT ROW_NUMBER() OVER (PARTITION BY [datatime] ORDER BY [datatime] DESC) AS ROWNUM,*FROM [2M_Web_Data].[dbo].[EMS]) AS TempM WHERE ROWNUM = 1 ORDER BY [datatime] DESC");
         DataTable dt = FourM_WEB.SqlHelper.cmdTable(cmd);
         return dt;
     }
