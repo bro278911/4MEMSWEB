@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/yatecstyle.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link rel="shortcut icon" href="logo/TECO_icon.ico" />
@@ -20,6 +21,7 @@
     <title>雲端監管平台</title>
     <script type="text/javascript"> 
         $(document).ready(function () {
+            loder();
             myTimer();
             
             var Timer = setInterval(function () {
@@ -30,53 +32,61 @@
         });
     </script>
 </head>
-<body style="background-image: url(/login.svg);">
-    <nav class="navbar navbar-fixed-top">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    </button>
-                    <a class="navbar-brand" href="Homepage.aspx">
-                        <img src="/logo/TECO_logo.svg" width="150" height="40" alt='TECO' /></a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-collapse-center row" id="bs-example-navbar-collapse-1">
-
-                    <p id="pagename" class=" navbar-center">4M儲能系統</p>
-                    <p class="navbar-text navbar-right" style="font-weight: bold; font-size: 24px; color: black" id="demo"></p>
-                    <%--<button type = "button" class="btn btn-primary btn-lg navbar-btn navbar-right" data-toggle="modal" data-target="#myModal" style = "background-color: #004584; font-weight: bold" > 登入</button>--%>
-                </div>
-
-
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-    <div style="text-align: center;">
-        <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target="#myModal" style="background-color: #004584; font-weight: bold">登入</button>
+<body>
+    <%-- loder --%>
+    <div id="preloader">
+        <div id="status"></div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" style="font-weight: bold">登入頁面</h4>
+    <%-- loder end --%>
+    <div class="container-fluid">
+        <div class="col-sm-8 img" ></div>
+        <div class="col-sm-4 right" style="background-color:gainsboro">
+                <nav class="navbar navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse navbar-collapse-center row" id="bs-example-navbar-collapse-1">
+                            <p id="pagename" class=" navbar-right"></p>
+                            <p class="navbar-text navbar-right" style="font-weight: bold; font-size: 24px; color: black" id="demo"></p>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            <div class="col-sm-12" style="margin-top:40%" >
+                <div class="text-center">
+                    <img src="/logo/TECO_logo.svg" width="150" height="40" alt='TECO' />
+                </div>
+                <div class="">
+                    <h4 class="modal-title text-center" id="" style="font-weight: bold">4M儲能系統</h4>
+                    <%--<h4 class="modal-title text-center" id="" style="font-weight: bold">登入</h4>--%>
                 </div>
                 <form id="form1" runat="server">
-                    <div class="modal-body">
+                    <div>
                         <div class="form-group">
                             <label for="username">使用者名稱</label>
                             <span id="user" class="error"></span>
-                            <input type="text" class="form-control" name="username" id="txtUserName" runat="server" placeholder="使用者名稱" />
-                            <asp:RequiredFieldValidator ControlToValidate="txtUserName" Display="Static" ErrorMessage="*" runat="server" ID="RequiredFieldValidator1" />
+                            <div class="input-group">
+                                <div class="input-group-addon"><image src="svgicon/person.svg"></image></div>
+                                <input type="text" style="width: 90%;"  class="form-control" name="username" id="txtUserName" runat="server" placeholder="使用者名稱" />
+                                <asp:RequiredFieldValidator ControlToValidate="txtUserName" Display="Static" ErrorMessage="*" runat="server" ID="RequiredFieldValidator1" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">密碼</label>
                             <span id="psword" class="error"></span>
-                            <input type="password" class="form-control" name="password" id="txtUserPass" runat="server" placeholder="密碼" />
-                            <asp:RequiredFieldValidator ControlToValidate="txtUserPass" Display="Static" ErrorMessage="*" runat="server" ID="RequiredFieldValidator2" />
+                            <div class="input-group">
+                                <div class="input-group-addon"><image src="svgicon/lock.svg"></image></div>
+                                <input type="password" style="width: 90%;" class="form-control" name="password" id="txtUserPass" runat="server" placeholder="密碼" />
+                                <asp:RequiredFieldValidator ControlToValidate="txtUserPass" Display="Static" ErrorMessage="*" runat="server" ID="RequiredFieldValidator2" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="cav_place">
+                                <input class="form-control"   id="myvad" type="text" name="vad" placeholder="請輸入驗證碼" runat='server'/>
+                            </div>   
+                            <div class="cav_place">
+                                <canvas  class="" id="mycanvas"  width='150' height='45'></canvas>
+                            </div>
+                              <input type="hidden" id="myvad_ans" runat='server' />
                         </div>
                         <div class="form-group">
                             <table>
@@ -89,14 +99,20 @@
                             </table>
                             <asp:Label ID="Label1" ForeColor="red" Font-Name="Verdana" Font-Size="10" runat="server" />
                         </div>
+                            <div>
+                                <button type="submit" style="width: 90%;" value="Logon" runat="server" id="cmdLogin" class="btn btn-primary" data-dismiss="modal">登入</button>
+                            </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="submit" value="Logon" runat="server" id="cmdLogin" class="btn btn-primary" data-dismiss="modal">登入</button>
+                    <div class="footer">
+                        <div class="text-center">Copyright &copy; 2023 東元電機股份有限公司</div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
 </body>
+<%-- 驗證碼js --%>
+<script type="text/javascript" src="/EMSscript/check.js"></script>
+<%-- 驗證碼js end --%>
 </html>

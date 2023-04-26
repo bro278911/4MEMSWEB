@@ -11,7 +11,6 @@ using System.Web.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Web.SessionState;
-using System.Net;
 
 public partial class Loginpage : System.Web.UI.Page
 {
@@ -21,10 +20,10 @@ public partial class Loginpage : System.Web.UI.Page
         UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         this.cmdLogin.ServerClick += new System.EventHandler(this.cmdLogin_ServerClick);
     }
-    private bool ValidateUser(string userName, string passWord)
+    private bool ValidateUser(string userName, string passWord, string myvad, string myvad_ans)
     {
         string lookupPassword = null;
-
+        string lookupmyVad = null;
         // Check for invalid userName.
         // userName must not be null and must be between 1 and 15 characters.
         if ((null == userName) || (0 == userName.Length) || (userName.Length > 15))
@@ -40,10 +39,13 @@ public partial class Loginpage : System.Web.UI.Page
             System.Diagnostics.Trace.WriteLine("[ValidateUser] Input validation of passWord failed.");
             return false;
         }
-
+        if ((null == myvad) || (0 == myvad.Length) || (myvad.Length > 25))
+        {
+            System.Diagnostics.Trace.WriteLine("[ValidateUser] Input validation of passWord failed.");
+            return false;
+        }
         try
         {
-  
             //呼叫以定義類別
             Method_4M method = new Method_4M();
             //使用類別內function將資料轉為DataTable
@@ -56,12 +58,12 @@ public partial class Loginpage : System.Web.UI.Page
 
             string psd = null;
             string username = null;
-            username = userName ;
+            username = userName;
             psd = re_.Rows[0][0].ToString();
-
             //使用session儲存登入者帳號名稱，需要時再用資料庫找權限因應伺服器端及用戶端不可互相取用故放棄(未啟用)
             //Session["login_username"] = username;
 
+            //使用者名稱使用cookie存儲以備使用
             HttpCookie cookie = new HttpCookie("4mwebcookie");//初始化並設置Cookie的名稱
             cookie.Values.Add("username", username);
             Response.AppendCookie(cookie);
@@ -70,10 +72,12 @@ public partial class Loginpage : System.Web.UI.Page
 
             //context.Response.Write(psd+","+username);
             //context.Response.Write(username);
-            if (passWord == psd)
+            if (passWord == psd && myvad == myvad_ans)
             {
+
                 Console.WriteLine("成功!!!");
                 lookupPassword = psd;
+                lookupmyVad = myvad_ans;
             }
             else
             {
@@ -90,7 +94,7 @@ public partial class Loginpage : System.Web.UI.Page
         }
 
         // If no password found, return false.
-        if (null == lookupPassword)
+        if (null == lookupPassword || null == lookupmyVad)
         {
             // You could write failed login attempts here to event log for additional security.
             return false;
@@ -101,7 +105,7 @@ public partial class Loginpage : System.Web.UI.Page
     }
     private void cmdLogin_ServerClick(object sender, System.EventArgs e)
     {
-        if (ValidateUser(txtUserName.Value, txtUserPass.Value))
+        if (ValidateUser(txtUserName.Value, txtUserPass.Value, myvad.Value, myvad_ans.Value))
         {
             FormsAuthenticationTicket tkt;
             string cookiestr;

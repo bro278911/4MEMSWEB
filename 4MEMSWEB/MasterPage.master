@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/yatecstyle.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="/EMSscript/systemscript.js"></script>
@@ -29,6 +30,7 @@
     <title>TECO雲端監管平台-佳龍4M</title>
     <script type="text/javascript"> 
         $(document).ready(function () {
+            loder();
             if (typeof (Storage) !== "undefined") {
                 console.log("aa");
                 // Select the value stored 
@@ -111,6 +113,11 @@
     </asp:ContentPlaceHolder>
 </head>
 <body style="background-color: #F1F8FF;">
+    <%-- loder --%>
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <%-- loder end --%>
     <form id="form1" runat="server">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">

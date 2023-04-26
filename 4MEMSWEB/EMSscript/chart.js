@@ -142,7 +142,8 @@ function sbspmchart() {
     var chart2 = null;
 
     for (var i in SBSPM_Chartdatas) {
-        dataTable.addRows([[i + '', SBSPM_Chartdatas[i].SBPSPM]]);//X軸id除2為時間3600秒,Y軸資料%
+        var time = (SBSPM_Chartdatas[i].datatime).split('T');//透過split 分割時間取time[1]
+        dataTable.addRows([[time[1] + '', SBSPM_Chartdatas[i].SBPSPM]]);
     }
 
     options = {
@@ -204,7 +205,8 @@ function systemchart() {
     //}
 
     for (var j in System_Chartdatas) {
-        dataTable.addRows([[j + '', (System_Chartdatas[j].P_ref) / 100, System_Chartdatas[j].Base_Freq]]);//X軸id除2為時間3600秒,Y軸資料%
+        var time = (System_Chartdatas[j].datatime).split('T');//透過split 分割時間取time[1]
+        dataTable.addRows([[time[1] + '', (System_Chartdatas[j].P_ref) / 100, System_Chartdatas[j].Base_Freq]]);
     }
 
     options = {
@@ -268,8 +270,8 @@ function PCSchart() {
     dataTable.addColumn('number', data2);
     var chart1 = null;
     for (var j in Pcs_Chartdatas) {
-        dataTable.addRows([[j + '', (Pcs_Chartdatas[j].P_ref) / 100, Pcs_Chartdatas[j].Base_Freq]]);//X軸id除2為時間3600秒,Y軸資料%
-        
+        var time = (Pcs_Chartdatas[j].datatime).split('T');//透過split 分割時間取time[1]
+        dataTable.addRows([[time[1] + '', (Pcs_Chartdatas[j].P_ref) / 100, Pcs_Chartdatas[j].Base_Freq]]);
     }
 
     options = {

@@ -1,4 +1,9 @@
 ﻿var islogin;
+/*logding function*/
+function loder() {
+    $("#status").fadeOut();
+    $("#preloader").delay(450).fadeOut("slow");
+}
 //取cookie登入者帳號(作為查詢權限用)
 function getCookie_username() {
     var all_data = document.cookie.split(';');
