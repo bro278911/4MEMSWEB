@@ -40,7 +40,7 @@
     <%-- loder end --%>
     <div class="container-fluid">
         <div class="col-sm-8 img" ></div>
-        <div class="col-sm-4 right" style="background-color:gainsboro">
+        <div class="col-sm-4 right" style="background-color:#f1f1ff">
                 <nav class="navbar navbar-fixed-top">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse navbar-collapse-center row" id="bs-example-navbar-collapse-1">
