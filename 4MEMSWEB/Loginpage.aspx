@@ -67,7 +67,7 @@
                             <div class="input-group">
                                 <div class="input-group-addon"><image src="svgicon/person.svg"></image></div>
                                 <input type="text" style="width: 90%;"  class="form-control" name="username" id="txtUserName" runat="server" placeholder="使用者名稱" />
-                                <asp:RequiredFieldValidator ControlToValidate="txtUserName" Display="Static" ErrorMessage="*" runat="server" ID="RequiredFieldValidator1" />
+                                <asp:RequiredFieldValidator ControlToValidate="txtUserName" Display="Static" Font-Size="X-Large" ForeColor="red" ErrorMessage="*" runat="server" ID="RequiredFieldValidator1" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,13 +76,14 @@
                             <div class="input-group">
                                 <div class="input-group-addon"><image src="svgicon/lock.svg"></image></div>
                                 <input type="password" style="width: 90%;" class="form-control" name="password" id="txtUserPass" runat="server" placeholder="密碼" />
-                                <asp:RequiredFieldValidator ControlToValidate="txtUserPass" Display="Static" ErrorMessage="*" runat="server" ID="RequiredFieldValidator2" />
+                                <asp:RequiredFieldValidator ControlToValidate="txtUserPass" Display="Static" Font-Size="X-Large" ForeColor="red" ErrorMessage="*" runat="server" ID="RequiredFieldValidator2" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="cav_place">
                                 <input class="form-control"   id="myvad" type="text" name="vad" placeholder="請輸入驗證碼" runat='server'/>
-                            </div>   
+                            </div> 
+                            <asp:RequiredFieldValidator ControlToValidate="myvad" Display="Static" Font-Size="X-Large" ForeColor="red" ErrorMessage="*" runat="server" ID="RequiredFieldValidator3" />
                             <div class="cav_place">
                                 <canvas  class="" id="mycanvas"  width='150' height='45'></canvas>
                             </div>

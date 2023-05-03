@@ -60,3 +60,24 @@
     margin: -40px 0 0 -100px;
 }
 /*------------------loading end------------------*/
+/*------------------652RWD end------------------*/
+@media only screen and (max-width: 652px) {
+    .right {
+        position: fixed;
+        bottom: 0;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        height: 40px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+/*------------------652RWD end------------------*/
