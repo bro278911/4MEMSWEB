@@ -19,7 +19,7 @@ public class getPermission_data : IHttpHandler {
         string str_json = null;
         try
         {
-            string login_username = context.Request.Form["login_username"].ToString();
+            string login_username = context.Request["login_username"];
             //呼叫以定義類別
             Method_4M method = new Method_4M();
             //使用類別內function將資料轉為DataTable

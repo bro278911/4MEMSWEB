@@ -137,7 +137,7 @@
                     <%--<button type = "button" class="btn btn-primary btn-lg navbar-btn navbar-right" data-toggle="modal" data-target="#myModal" style = "background-color: #004584; font-weight: bold" > 登入</button>--%>
                     <p id="Username" class=" navbar-right"></p>
                     <button class="btn btn-danger btn-lg navbar-btn navbar-right" style = "font-weight: bold" type="submit" value="SignOut" runat="server" id="cmdSignOut">登出</button>
-
+                    <span id="username" hidden></span>
                 </div>
 
 

@@ -4,12 +4,6 @@ function loder() {
     $("#status").fadeOut();
     $("#preloader").delay(450).fadeOut("slow");
 }
-//取cookie登入者帳號(作為查詢權限用)
-function getCookie_username() {
-    var all_data = document.cookie.split(';');
-    var data = all_data[0].split('=');
-    return data[2];
-}
 function myTimer() {
     var d = new Date();
     var t = d.toLocaleTimeString('en-GB');

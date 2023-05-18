@@ -17,6 +17,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         //清除cookies，清除方法為設定目前日期-1天過期
         Response.Cookies["4mwebcookie"].Expires = DateTime.Now.AddDays(-1);
+        Response.Cookies["2mwebcookie"].Expires = DateTime.Now.AddDays(-1);
         //Session.RemoveAll();
         FormsAuthentication.SignOut();
         Response.Redirect("Loginpage.aspx", true);

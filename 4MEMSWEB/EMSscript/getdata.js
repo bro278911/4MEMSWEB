@@ -36,8 +36,9 @@ function gettempRandom(x) {
 
 /*先執行取權限資料方法*/
 function getPermissiondata() {
-    /*內容為儲存在cookie的權限等級username)*/
-        var login_username =  getCookie_username();
+    /*解析cookie(4mwebcookie)裡的username*/
+    var login_username = document.cookie.split(';').find((item) => item.trim().startsWith("4mwebcookie=username=")).split('=')[2];
+    $("#username").text(login_username);
     /*    console.log(login_username)*/
     $.ajax(
         {
@@ -45,7 +46,7 @@ function getPermissiondata() {
             type: 'post',
             async: false,
             dataType: 'json',
-            data: {"login_username": login_username },
+            data: { "login_username": $("#username").text() },
             success: function initialize(data) {
                 Permission_data = data;
                 //enablebtn("AFCTEST");
